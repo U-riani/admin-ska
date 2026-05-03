@@ -12,7 +12,6 @@ const EventsAdminPage = () => {
   const token = JSON.parse(localStorage.getItem("adminInfo"))?.token;
   const backendUrl = import.meta.env.VITE_API_URL;
 
-  const token = JSON.parse(localStorage.getItem("adminInfo"))?.token;
 
   // Fetch events based on filter
   const fetchEvents = async () => {
