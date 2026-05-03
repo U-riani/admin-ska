@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+const backendUrl = import.meta.env.VITE_API_URL;
 
 const AdminStaffPage = () => {
   const [staff, setStaff] = useState([]);
@@ -11,7 +12,7 @@ const AdminStaffPage = () => {
   const fetchStaff = async () => {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:5000/api/staff", {
+      const res = await fetch(`${backendUrl}/staff`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();

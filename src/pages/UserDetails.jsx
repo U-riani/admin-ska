@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+const backendUrl = import.meta.env.VITE_API_URL;
 
 export default function UserDetails() {
   const { id } = useParams();
@@ -10,7 +11,7 @@ export default function UserDetails() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/users");
+        const res = await fetch(`${backendUrl}/users`);
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || "Failed to load user");
         const found = data.users.find((u) => u._id === id);

@@ -9,6 +9,8 @@ const EventsAdminPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [editEvent, setEditEvent] = useState(null);
   const [viewMode, setViewMode] = useState("table"); // table | grid
+  const token = JSON.parse(localStorage.getItem("adminInfo"))?.token;
+  const backendUrl = import.meta.env.VITE_API_URL;
 
   const token = JSON.parse(localStorage.getItem("adminInfo"))?.token;
 
@@ -17,7 +19,7 @@ const EventsAdminPage = () => {
     try {
       setLoading(true);
 
-      let url = "http://localhost:5000/api/events";
+      let url = `${backendUrl}/events`;
 
       if (filter === "archived") {
         url += "?archived=true";
@@ -48,7 +50,7 @@ const EventsAdminPage = () => {
     if (!window.confirm("Are you sure you want to archive this event?")) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/events/${id}`, {
+      const res = await fetch(`${backendUrl}/events/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+const backendUrl = import.meta.env.VITE_API_URL;
 
 const EventFormModal = ({ setModalOpen, fetchEvents, editEvent }) => {
   const [formData, setFormData] = useState(
@@ -34,8 +35,8 @@ const EventFormModal = ({ setModalOpen, fetchEvents, editEvent }) => {
 
     const method = editEvent ? "PUT" : "POST";
     const url = editEvent
-      ? `http://localhost:5000/api/events/${editEvent._id}`
-      : "http://localhost:5000/api/events";
+      ? `${backendUrl}/events/${editEvent._id}`
+      : `${backendUrl}/events`;
 
     const form = new FormData();
     Object.entries(formData).forEach(([key, value]) =>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+const backendUrl = import.meta.env.VITE_API_URL;
 
 const AdminUsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -30,7 +31,7 @@ const AdminUsersPage = () => {
     if (!token) return;
 
     try {
-      const url = `http://localhost:5000/api/users/${filter}`;
+      const url = `${backendUrl}/users/${filter}`;
       const res = await fetch(url, {
         headers: {
           "Content-Type": "application/json",
@@ -71,7 +72,7 @@ const AdminUsersPage = () => {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${id}/verify`, {
+      const res = await fetch(`${backendUrl}/users/${id}/verify`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

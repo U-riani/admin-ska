@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+const backendUrl = import.meta.env.VITE_API_URL;
 
 export default function AdminInvitePage() {
   const [events, setEvents] = useState([]);
@@ -18,7 +19,7 @@ export default function AdminInvitePage() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/events?type=all");
+        const res = await fetch(`${backendUrl}/events?type=all`);
         const data = await res.json();
         if (res.ok) setEvents(data.events || []);
         else setError("Failed to load events");

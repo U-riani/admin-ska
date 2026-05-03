@@ -1,5 +1,6 @@
 import { Html5QrcodeScanner } from "html5-qrcode";
 import { useEffect, useState } from "react";
+const backendUrl = import.meta.env.VITE_API_URL;
 
 export default function TicketCheckPage() {
   const [ticketData, setTicketData] = useState(null);
@@ -23,8 +24,8 @@ export default function TicketCheckPage() {
         try {
           const isInvite = decodedText.startsWith("INVITE-");
           const endpoint = isInvite
-            ? "http://localhost:5000/api/invites/validate"
-            : "http://localhost:5000/api/tickets/validate";
+            ? `${backendUrl}/invites/validate`
+            : `${backendUrl}/tickets/validate`;
 
           const res = await fetch(endpoint, {
             method: "POST",

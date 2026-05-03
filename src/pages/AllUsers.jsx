@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+const backendUrl = import.meta.env.VITE_API_URL;
 
 export default function AllUsers() {
   const token = JSON.parse(localStorage.getItem("adminInfo"))?.token;
@@ -11,7 +12,7 @@ export default function AllUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/users", {
+        const res = await fetch(`${backendUrl}/users`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+const backendUrl = import.meta.env.VITE_API_URL;
 
 const AdminEventStatsPage = () => {
   const [stats, setStats] = useState([]);
@@ -8,7 +9,7 @@ const AdminEventStatsPage = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/events/stats", {
+        const res = await fetch(`${backendUrl}/events/stats`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();

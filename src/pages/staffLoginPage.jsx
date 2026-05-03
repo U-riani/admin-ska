@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+const backendUrl = import.meta.env.VITE_API_URL;
 
 const StaffLoginPage = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -12,7 +13,7 @@ const StaffLoginPage = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:5000/api/staff/login", {
+      const res = await fetch(`${backendUrl}/staff/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
