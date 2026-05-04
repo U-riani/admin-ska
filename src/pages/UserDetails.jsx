@@ -7,11 +7,16 @@ export default function UserDetails() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const token = JSON.parse(localStorage.getItem("adminInfo"))?.token;
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`${backendUrl}/users`);
+        const res = await fetch(`${backendUrl}/users`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || "Failed to load user");
         const found = data.users.find((u) => u._id === id);
